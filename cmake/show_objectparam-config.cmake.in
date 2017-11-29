@@ -1,0 +1,54 @@
+# Show_ObjectParam CMake config file
+#
+# This file sets the following variables:
+# Show_ObjectParam_FOUND - Always TRUE.
+# Show_ObjectParam_INCLUDE_DIRS - Directories containing the Show_ObjectParam include files.
+# Show_ObjectParam_IDL_DIRS - Directories containing the Show_ObjectParam IDL files.
+# Show_ObjectParam_LIBRARIES - Libraries needed to use Show_ObjectParam.
+# Show_ObjectParam_DEFINITIONS - Compiler flags for Show_ObjectParam.
+# Show_ObjectParam_VERSION - The version of Show_ObjectParam found.
+# Show_ObjectParam_VERSION_MAJOR - The major version of Show_ObjectParam found.
+# Show_ObjectParam_VERSION_MINOR - The minor version of Show_ObjectParam found.
+# Show_ObjectParam_VERSION_REVISION - The revision version of Show_ObjectParam found.
+# Show_ObjectParam_VERSION_CANDIDATE - The candidate version of Show_ObjectParam found.
+
+message(STATUS "Found Show_ObjectParam-@PROJECT_VERSION@")
+set(Show_ObjectParam_FOUND TRUE)
+
+find_package(<dependency> REQUIRED)
+
+#set(Show_ObjectParam_INCLUDE_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@"
+#    ${<dependency>_INCLUDE_DIRS}
+#    )
+#
+#set(Show_ObjectParam_IDL_DIRS
+#    "@CMAKE_INSTALL_PREFIX@/include/@PROJECT_NAME_LOWER@-@PROJECT_VERSION_MAJOR@/idl")
+set(Show_ObjectParam_INCLUDE_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@"
+    ${<dependency>_INCLUDE_DIRS}
+    )
+set(Show_ObjectParam_IDL_DIRS
+    "@CMAKE_INSTALL_PREFIX@/include/@CPACK_PACKAGE_FILE_NAME@/idl")
+
+
+if(WIN32)
+    set(Show_ObjectParam_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_STATIC_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+else(WIN32)
+    set(Show_ObjectParam_LIBRARIES
+        "@CMAKE_INSTALL_PREFIX@/@LIB_INSTALL_DIR@/@CMAKE_SHARED_LIBRARY_PREFIX@@PROJECT_NAME_LOWER@@CMAKE_SHARED_LIBRARY_SUFFIX@"
+        ${<dependency>_LIBRARIES}
+        )
+endif(WIN32)
+
+set(Show_ObjectParam_DEFINITIONS ${<dependency>_DEFINITIONS})
+
+set(Show_ObjectParam_VERSION @PROJECT_VERSION@)
+set(Show_ObjectParam_VERSION_MAJOR @PROJECT_VERSION_MAJOR@)
+set(Show_ObjectParam_VERSION_MINOR @PROJECT_VERSION_MINOR@)
+set(Show_ObjectParam_VERSION_REVISION @PROJECT_VERSION_REVISION@)
+set(Show_ObjectParam_VERSION_CANDIDATE @PROJECT_VERSION_CANDIDATE@)
+
